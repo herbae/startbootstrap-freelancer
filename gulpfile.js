@@ -6,6 +6,7 @@ var cleanCSS = require('gulp-clean-css');
 var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
 var filter = require('gulp-filter');
+var util = require('gulp-util');
 var pkg = require('./package.json');
 
 // Set the banner content
@@ -19,14 +20,14 @@ var banner = ['/*!\n',
 
 // Compile LESS files from /less into /css
 gulp.task('less', function() {
-    var f = filter(['*', '!mixins.less', '!variables.less']);
+    var f = filter(['**', '!mixins.less', '!variables.less']);
     return gulp.src('less/*.less')
         .pipe(f)
-        .pipe(less())
+        .pipe(less().on('error', util.log))
         .pipe(header(banner, { pkg: pkg }))
         .pipe(gulp.dest('css'))
         .pipe(browserSync.reload({
-            stream: true
+             stream: true
         }))
 });
 
