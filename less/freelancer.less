@@ -100,11 +100,23 @@ header {
 	}
 }
 
+section#photography {
+	text-align: center;
+	background-image: url("../img/florzinha.jpeg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: white;
+	.container {
+		padding-top: 200px;
+		padding-bottom: 200px;
+	}
+}
+
 @media(min-width:768px) {
 	header {
 		.container {
-			padding-top: 200px;
-			padding-bottom: 100px;
+			padding-top: 300px;
+			padding-bottom: 200px;
 		}
 		.intro-text {
 			.name {
@@ -365,8 +377,13 @@ footer {
 }
 
 .btn-primary {
-	.button-variant(white; @theme-primary; @theme-primary);
+	.button-variant(white; transparent; white);
 	font-weight: 700;
+	font-size: 30px;
+	&:hover {
+		background: @theme-success;
+		opacity: 0.3;
+	}
 }
 
 .btn-success {
