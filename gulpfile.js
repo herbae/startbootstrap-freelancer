@@ -44,7 +44,7 @@ gulp.task('minify-css', ['less'], function() {
 
 // Minify JS
 gulp.task('minify-js', function() {
-    return gulp.src('js/freelancer.js')
+    return gulp.src(['js/freelancer.js', 'js/app.js'])
         .pipe(uglify())
         .pipe(header(banner, { pkg: pkg }))
         .pipe(rename({ suffix: '.min' }))
@@ -61,6 +61,10 @@ gulp.task('copy', function() {
 
     gulp.src(['node_modules/jquery/dist/jquery.js', 'node_modules/jquery/dist/jquery.min.js'])
         .pipe(gulp.dest('vendor/jquery'))
+
+    gulp.src(['node_modules/angular/angular.min.js', 'node_modules/angular/angular.min.js.map',
+                'node_modules/angular-route/angular-route.min.js', 'node_modules/angular-route/angular-route.min.js.map'])
+        .pipe(gulp.dest('vendor/angular'))
 
     gulp.src([
             'node_modules/font-awesome/**',
